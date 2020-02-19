@@ -3,12 +3,9 @@ package co.za.immedia.superhero
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import co.za.immedia.superhero.Model.SearchSuperHero
 import co.za.immedia.superhero.Model.SuperHeroModel
 import co.za.immedia.superhero.Network.ApiClient
@@ -39,10 +36,12 @@ class SearchActivity : AppCompatActivity() {
         searchbar.setIconified(false);
         searchbar.requestFocusFromTouch();
 
+        SearchQuery("ba")
 
 
-
-        //GridListView.layoutManager = GridLayoutManager(this,2)
+        GridListView.layoutManager = GridLayoutManager(this,2)
+        GridListView.adapter = CardListAdapter(ListHero,this)
+        GridListView.setHasFixedSize(true)
 
 
     }
@@ -62,7 +61,9 @@ class SearchActivity : AppCompatActivity() {
 
                 var data = response?.body() as SearchSuperHero
 
-                print(data)
+                for(hero in ListHero){
+                    ListHero.add(hero)
+                }
 
             }
 
