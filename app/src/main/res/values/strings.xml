@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">superhero</string>
+    <string name="superheroapi">SuperHero</string>
+    <string name="main_activity_text">No result found for term “Type something” please try again with different search term.</string>
+    <string name="main_activity_title_txt">No superhero found</string>
+    <string name="ma_illustration">image</string>
+    <string name="search_superhero_text">Search superhero</string>
+    <string name="search_icon_text">search_icon</string>
+    <string name="search">Search</string>
+    <string name="heroimage">HeroImage</string>
+    <string name="cardTitleText">TextView</string>
+    <string name="CardSubTitleText">TextView</string>
+</resources>
