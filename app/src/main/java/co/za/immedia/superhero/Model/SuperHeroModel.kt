@@ -19,15 +19,30 @@ data class Powerstats(
 )
 
 data class Biography(
-    @SerializedName("full-name")
+
+//    @SerializedName("full-name")
+//    val fullName: String,
+//    @SerializedName("alter-egos")
+//    val alterEgos: String,
+
+    @SerializedName("fullName")
     val fullName: String,
-    @SerializedName("alter-egos")
+    @SerializedName("alterEgos")
     val alterEgos: String,
+
     @SerializedName("aliases")
     val aliases: ArrayList<String>,
-    @SerializedName("place-of-birth")
+
+//    @SerializedName("place-of-birth")
+//    val placeOfBirth: String,
+
+    @SerializedName("placeOfBirth")
     val placeOfBirth: String,
-    @SerializedName("first-appearance")
+
+//    @SerializedName("first-appearance")
+//    val firstAppearance: String,
+
+    @SerializedName("firstAppearance")
     val firstAppearance: String,
     @SerializedName("publisher")
     val publisher: String,
@@ -44,9 +59,15 @@ data class Appearance(
     val height: ArrayList<String>,
     @SerializedName("weight")
     val weight: ArrayList<String>,
-    @SerializedName("eye-color")
+
+//    @SerializedName("eye-color")
+//    val eyeColor: String,
+//    @SerializedName("hair-color")
+//    val hairColor: String
+
+    @SerializedName("eyeColor")
     val eyeColor: String,
-    @SerializedName("hair-color")
+    @SerializedName("hairColor")
     val hairColor: String
 )
 
@@ -58,15 +79,30 @@ data class Work(
 )
 
 data class Connections(
-    @SerializedName("group-affiliation")
+
+//    @SerializedName("group-affiliation")
+//    val groupAffiliation: String,
+
+    @SerializedName("groupAffiliation")
     val groupAffiliation: String,
     @SerializedName("relatives")
     val relatives: String
 )
 
 data class Image(
-    @SerializedName("url")
-    val url: String
+
+//    @SerializedName("url")
+//    val url: String
+
+    @SerializedName("xs")
+    val xs:String,
+    @SerializedName("sm")
+    val sm: String,
+    @SerializedName("md")
+    val md: String,
+    @SerializedName("lg")
+    val lg: String
+
 )
 
 
@@ -96,8 +132,11 @@ data class SuperHeroModel(
     @SerializedName("connections")
     val connections: Connections,
 
-    @SerializedName("image")
-    val image: Image
+//    @SerializedName("image")
+//    val image: Image
+
+    @SerializedName("images")
+    val images: Image
 
 )
 

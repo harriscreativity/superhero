@@ -21,16 +21,31 @@
         app:title="Search"
         app:titleTextColor="#FFFFFF" />
 
+    <ProgressBar
+        android:id="@+id/LoadingIndicator"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:indeterminate="true"
+        android:theme="@style/Loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/LoadingIndicator">
 
         <SearchView
             android:id="@+id/searchbar"
@@ -42,34 +57,30 @@
 
     <Button
         android:id="@+id/button"
-        style="@android:style/Widget.Material.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"
-        android:clickable="true"
-        android:focusable="true"
         android:onClick="onSubmitSearch"
         android:text="@string/search"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        tools:targetApi="lollipop" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/GridListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

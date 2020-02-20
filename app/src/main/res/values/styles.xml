@@ -21,4 +21,8 @@
         <item name="android:textColorSecondary">#FFF</item>
     </style>
 
+    <style name="Loading" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#FFF</item>
+    </style>
+
 </resources>
