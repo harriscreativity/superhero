@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+        <item name="android:textColor">@color/textPrimaryColor</item>
     </style>
 
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">

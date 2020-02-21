@@ -10,4 +10,25 @@
     <string name="heroimage">HeroImage</string>
     <string name="cardTitleText">TextView</string>
     <string name="CardSubTitleText">TextView</string>
+    <string name="detailimage">detailimage</string>
+    <string name="batman">Batman</string>
+    <string name="value1">TextView</string>
+    <string name="powersets">POWERSETS</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="strength">Strength</string>
+    <string name="placeholderTxt">TextView</string>
+    <string name="speed">Speed</string>
+    <string name="durability">Durability</string>
+    <string name="full_name">Full name</string>
+    <string name="place_of_birth">Place Of Birth</string>
+    <string name="alter_egos">Alter egos</string>
+    <string name="first_appearance">First Appearance</string>
+    <string name="aliases">Aliases</string>
+    <string name="publisher">Publisher</string>
+    <string name="alignment">Alignment</string>
+    <string name="power">Power</string>
+    <string name="combat">Combat</string>
+    <string name="biography">BIOGRAPHY</string>
+    <string name="appearance">APPEARANCE</string>
+    <string name="gender">Gender</string>
 </resources>

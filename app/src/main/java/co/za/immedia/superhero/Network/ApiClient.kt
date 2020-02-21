@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory.*
 
 object ApiClient {
 
-    var BASE_URL:String="https://superhero-search.p.rapidapi.com/"
+    var BASE_URL:String="https://superheroapi.com/api/"
 
     val getClient: ApiInterface
         get() {

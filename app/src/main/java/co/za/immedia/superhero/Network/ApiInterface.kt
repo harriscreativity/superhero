@@ -13,11 +13,10 @@ public interface ApiInterface {
 
 
     @GET("/id")
-    fun getHeroById(): Call<SuperHeroModel>
+    fun getHeroById(@Query("id") id: String): Call<SuperHeroModel>
 
-    @Headers("x-rapidapi-host:superhero-search.p.rapidapi.com",
-        "x-rapidapi-key:a0aeeefb74mshecf9ba1829b5d05p1b03a3jsnd4e2ffd79e5d")
-    @GET( "/")
-    fun searchSuperHero(@Query("hero") hero: String): Call<SuperHeroModel>
+
+    @GET( "2881871825189324/search/{name}")
+    fun searchSuperHero(@Path("name") name: String): Call<SearchSuperHero>
 
 }
