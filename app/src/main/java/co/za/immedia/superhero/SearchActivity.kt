@@ -1,18 +1,15 @@
 package co.za.immedia.superhero
 
-import android.graphics.Color
-import android.graphics.ColorFilter
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import co.za.immedia.superhero.Model.SearchSuperHero
 import co.za.immedia.superhero.Model.SuperHeroModel
 import co.za.immedia.superhero.Network.ApiClient
 import co.za.immedia.superhero.adapters.CardListAdapter
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_search.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +20,8 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
 
     val ListHero = mutableListOf<SuperHeroModel>()
 
+    lateinit var realm: Realm
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -30,6 +29,9 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        realm = Realm.getDefaultInstance()
+
 
         searchbar.setOnQueryTextListener(this)
         searchbar.setIconifiedByDefault(true);
@@ -71,7 +73,7 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
                 }
 
 
-                GridListView.adapter = CardListAdapter(ListHero.reversed(),applicationContext)
+                GridListView.adapter = CardListAdapter(ListHero.reversed(),applicationContext,realm)
                 GridListView.refreshDrawableState()
                 searchbar.setQuery("",false)
                 searchbar.clearFocus()
@@ -97,7 +99,10 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
         return false
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close() // Remember to close Realm when done.
+    }
 
 }
 

@@ -5,17 +5,18 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import co.za.immedia.superhero.Model.SuperHeroRealmModel
 import co.za.immedia.superhero.DetailActivity
 import co.za.immedia.superhero.Model.SuperHeroModel
+import co.za.immedia.superhero.MyApplication
 import co.za.immedia.superhero.R
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_main.view.*
+import io.realm.Realm
 import kotlinx.android.synthetic.main.superhero_grid_item.view.*
 
-class CardListAdapter(private val Heros: List<SuperHeroModel>, private val context: Context) :
+class CardListAdapter(private val Heros: List<SuperHeroModel>, private val context: Context, private var realm: Realm) :
     RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,8 +45,19 @@ class CardListAdapter(private val Heros: List<SuperHeroModel>, private val conte
 
         holder.itemView.GridItem.setOnClickListener {
 
+
+
             var data = Heros[position]
             val jsonString = Gson().toJson(data)
+
+
+            var AppService = MyApplication()
+            AppService.InsertData(
+                SuperHeroRealmModel(
+                    data = jsonString
+                ),realm
+            )
+
             var intent = Intent(holder.itemView.GridItem.context, DetailActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("param", jsonString)

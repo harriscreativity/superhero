@@ -2,18 +2,26 @@ package co.za.immedia.superhero
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import co.za.immedia.superhero.Model.Appearance
+import co.za.immedia.superhero.Model.ExpandedItem
 import co.za.immedia.superhero.Model.SuperHeroModel
+import co.za.immedia.superhero.adapters.ExpandedAdapter
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search.toolbar
-import kotlinx.android.synthetic.main.biography_item.*
-import kotlinx.android.synthetic.main.detail_powerset.*
+import kotlin.reflect.KProperty1
+import kotlin.reflect.full.memberProperties
 
 class DetailActivity : AppCompatActivity() {
 
 lateinit var superHeroModel : SuperHeroModel
+
+    var appearanceList = mutableListOf<ExpandedItem>()
+    var biographyList = mutableListOf<ExpandedItem>()
+    var powerstatsList = mutableListOf<ExpandedItem>()
+
+    internal var adapter: ExpandedAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,42 +46,63 @@ lateinit var superHeroModel : SuperHeroModel
             .optionalCenterCrop()
             .into(detailimage);
 
-        SetPowerset();
-        SetBiography();
+        intDetail()
+        GroupingExpandedListItem()
 
     }
 
-    private fun SetPowerset(){
 
-        detailname.text = superHeroModel.name
-        fullname.text = superHeroModel.biography.fullName
 
-        intetlligence.text = superHeroModel.powerstats.intelligence
-        seekBarIntelligence.progress = superHeroModel.powerstats.intelligence.toInt()
+    fun GroupingExpandedListItem(){
 
-        combat.text = superHeroModel.powerstats.combat
-        seekBarCombat.progress = superHeroModel.powerstats.combat.toInt()
+        var powersts = superHeroModel.powerstats
+        var app  = superHeroModel.appearance
+        var bio = superHeroModel.biography
 
-        durability.text = superHeroModel.powerstats.durability
-        seekBarDurability.progress = superHeroModel.powerstats.durability.toInt()
+        for (prop in powersts::class.memberProperties) {
+            val name = powersts.javaClass.kotlin.memberProperties.first { it.name == prop.name }.get(powersts)
+            powerstatsList.add(ExpandedItem(key = prop.name,value = name.toString()))
+        }
 
-        power.text = superHeroModel.powerstats.power
-        seekBarPower.progress = superHeroModel.powerstats.power.toInt()
+        for (prop in app::class.memberProperties) {
+            val name = app.javaClass.kotlin.memberProperties.first { it.name == prop.name }.get(app)
+            appearanceList.add(ExpandedItem(key = prop.name,value = name.toString()))
+        }
 
-        strengthValue.text = superHeroModel.powerstats.strength
-        seekBarStrength.progress = superHeroModel.powerstats.strength.toInt()
+        for (prop in bio::class.memberProperties) {
+            val name = bio.javaClass.kotlin.memberProperties.first { it.name == prop.name }.get(bio)
+            biographyList.add(ExpandedItem(key = prop.name,value = name.toString()))
+        }
 
-        speed.text = superHeroModel.powerstats.speed
-        speedSeekBar.progress = superHeroModel.powerstats.speed.toInt()
+
+        val listData = HashMap<String, List<ExpandedItem>>()
+        listData["powerstats"] = powerstatsList
+        listData["Appearance"] = appearanceList
+        listData["biography"] = biographyList
+
+        var titleList = ArrayList(listData.keys)
+        adapter = ExpandedAdapter(this, titleList as ArrayList<String>, listData)
+        expandableListView.setAdapter(adapter)
+        expandableListView.refreshDrawableState()
     }
 
-    private fun SetBiography(){
-        bioFullname.text = superHeroModel.biography.fullName
-        BioAfterEgos.text = superHeroModel.biography.alterEgos
-        BioAliasses.text = superHeroModel.biography.aliases.toString()
-        BioPlaceOfBirth.text = superHeroModel.biography.placeOfBirth
-        BiofirstAppearance.text = superHeroModel.biography.firstAppearance
-        BioPublisher.text = superHeroModel.biography.publisher
-        Bioalignment.text = superHeroModel.biography.alignment
+
+    fun intDetail(){
+
+        detailName.text = superHeroModel.name
+        detailFullname.text = superHeroModel.biography.fullName
+        detailBirthPlace.text = superHeroModel.biography.placeOfBirth
+        detailPublisher.text = superHeroModel.biography.publisher
+        detailHeight.text = "HEIGHT \n" + superHeroModel.appearance.height[1] + "\n" + superHeroModel.appearance.height[0]
+        detailWeight.text = "WEIGHT \n" + superHeroModel.appearance.weight[1] + "\n" + superHeroModel.appearance.weight[0]
+
+        workTitle.text = "OCCUPATION \n" + superHeroModel.work.occupation
+        workText.text = "BASE \n" + superHeroModel.work.base
+
+        connTitle.text = "group affiliation \n\n".toUpperCase() + superHeroModel.connections.groupAffiliation
+        connText.text = "relatives \n\n".toUpperCase() + superHeroModel.connections.relatives
+
     }
+
+
 }
