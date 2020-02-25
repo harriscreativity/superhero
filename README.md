@@ -3,7 +3,8 @@
 Clone the repo
 Open on android studio
 Localization support french
-Local Db Realm 
+Local Db Realm
+Network Retroit
 ```
 <p>
   <img src="Screenshot_1582622000.png" width="250" title="hover text">
