@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Super-héros</string>
     <string name="superheroapi">Super-héros</string>
-    <string name="main_activity_text">Aucun résultat trouvé pour le terme "Tapez quelque chose", veuillez réessayer avec un autre terme de recherche</string>
-    <string name="main_activity_title_txt">Aucun super-héros trouvé</string>
+    <string name="main_activity_text">Par exemple: Superman, Spider-man, Ant-Man, Batman ...</string>
+    <string name="main_activity_title_txt">Tapez votre nom SuperHero préféré pour commencer</string>
     <string name="ma_illustration">image</string>
     <string name="search_superhero_text">Recherche super-héros</string>
     <string name="search_icon_text">icône de recherche</string>

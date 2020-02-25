@@ -46,8 +46,16 @@ lateinit var superHeroModel : SuperHeroModel
             .optionalCenterCrop()
             .into(detailimage);
 
-        intDetail()
-        GroupingExpandedListItem()
+        Thread(Runnable {
+            // performing some dummy time taking operation
+            this@DetailActivity.runOnUiThread(java.lang.Runnable {
+                intDetail()
+                GroupingExpandedListItem()
+            })
+
+        }).start()
+
+
 
     }
 

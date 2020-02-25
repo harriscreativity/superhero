@@ -56,7 +56,7 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
         LoadingIndicator.visibility = View.VISIBLE
         LoadingIndicator.isIndeterminate = true
 
-        val call: Call<SearchSuperHero> = ApiClient.getClient.searchSuperHero(name)
+        val call: Call<SearchSuperHero> = ApiClient.getClient.searchSuperHero(name.trim())
         call.enqueue(object : Callback<SearchSuperHero> {
 
             override fun onResponse(call: Call<SearchSuperHero>?, response: Response<SearchSuperHero>?) {
@@ -69,7 +69,7 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
 
 
                 var data = response?.body() as SearchSuperHero
-                if(data != null){
+                if(data.results != null){
                     for (hero in data.results){
                         ListHero.add(hero)
                     }
@@ -77,6 +77,8 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
                     GridListView.refreshDrawableState()
                     searchbar.setQuery("",false)
                     searchbar.clearFocus()
+                }else{
+                    Toast.makeText(applicationContext,"No Hero found try different name ...",Toast.LENGTH_LONG).show()
                 }
 
             }
