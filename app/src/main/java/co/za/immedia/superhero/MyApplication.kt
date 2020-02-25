@@ -19,15 +19,17 @@ class MyApplication : Application() {
 
     fun InsertData(param: SuperHeroRealmModel,realm: Realm){
 
-        val result = realm.where<SuperHeroRealmModel>()
-            .equalTo("data", param.data).findAllAsync()
-
-        if (result.size == 0){
-            realm.executeTransaction { realm ->
-                val SuperData = realm.createObject<SuperHeroRealmModel>(0)
-                SuperData.data = param.data
-            }
-        }
+        realm.executeTransactionAsync({ bgRealm ->
+            val SuperData = bgRealm.createObject<SuperHeroRealmModel>(param.id)
+            SuperData.data = param.data
+            print(SuperData.id)
+            //SuperData.id = param.id
+        }, {
+            print("Inserted...")
+        }, { error ->
+            // Transaction failed and was automatically canceled
+            print("Error occured : " + error.message)
+        })
 
     }
 

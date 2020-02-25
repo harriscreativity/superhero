@@ -54,7 +54,8 @@ class CardListAdapter(private val Heros: List<SuperHeroModel>, private val conte
             var AppService = MyApplication()
             AppService.InsertData(
                 SuperHeroRealmModel(
-                    data = jsonString
+                    data = jsonString,
+                    id = data.id.toInt()
                 ),realm
             )
 

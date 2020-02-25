@@ -1,9 +1,11 @@
 package co.za.immedia.superhero
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import co.za.immedia.superhero.Model.SuperHeroModel
@@ -11,7 +13,7 @@ import co.za.immedia.superhero.adapters.CardListAdapter
 import com.google.gson.Gson
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_search.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +26,12 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.hide()
 
         realm = Realm.getDefaultInstance()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        ListHero.clear()
 
         var AppService = MyApplication()
         var gson = Gson()
@@ -49,8 +57,6 @@ class MainActivity : AppCompatActivity() {
                 MainGridList.refreshDrawableState()
             }
         }
-
-
     }
 
     fun onSearch(view: View){

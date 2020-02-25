@@ -66,17 +66,18 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
                 LoadingIndicator.isIndeterminate = false;
                 LoadingIndicator.visibility = View.GONE
 
+
+
                 var data = response?.body() as SearchSuperHero
-
-                for (hero in data.results){
-                    ListHero.add(hero)
+                if(data != null){
+                    for (hero in data.results){
+                        ListHero.add(hero)
+                    }
+                    GridListView.adapter = CardListAdapter(ListHero.reversed(),applicationContext,realm)
+                    GridListView.refreshDrawableState()
+                    searchbar.setQuery("",false)
+                    searchbar.clearFocus()
                 }
-
-
-                GridListView.adapter = CardListAdapter(ListHero.reversed(),applicationContext,realm)
-                GridListView.refreshDrawableState()
-                searchbar.setQuery("",false)
-                searchbar.clearFocus()
 
             }
 

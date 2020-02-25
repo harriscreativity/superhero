@@ -1,11 +1,11 @@
 package co.za.immedia.superhero.Model
 
-import co.za.immedia.superhero.Model.SuperHeroModel
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import java.util.*
 
 open class SuperHeroRealmModel(
-    @PrimaryKey var id: Long = 0,
+    @PrimaryKey var id: Int? = null,
     var data: String? = null
 ):RealmObject()
 

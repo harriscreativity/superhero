@@ -9,39 +9,36 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="219dp"
+        android:layout_height="180dp"
         android:background="@drawable/gradient"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
         android:text="@string/superheroapi"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#fff"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="240dp"
-        android:layout_height="45dp"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="28dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.118"
-        android:focusable="true">
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -82,7 +79,6 @@
         android:textColor="#BEC4D9"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wellcometxt" />
 
@@ -90,6 +86,7 @@
         android:id="@+id/wellcometxt"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
         android:text="@string/main_activity_title_txt"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -97,7 +94,6 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_ills" />
 
@@ -105,7 +101,9 @@
         android:id="@+id/main_ills"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:contentDescription="@string/ma_illustration"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,11 +116,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,2 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Super-héros</string>
+    <string name="superheroapi">Super-héros</string>
+    <string name="main_activity_text">Aucun résultat trouvé pour le terme "Tapez quelque chose", veuillez réessayer avec un autre terme de recherche</string>
+    <string name="main_activity_title_txt">Aucun super-héros trouvé</string>
+    <string name="ma_illustration">image</string>
+    <string name="search_superhero_text">Recherche super-héros</string>
+    <string name="search_icon_text">icône de recherche</string>
+    <string name="search">recherche</string>
+    <string name="heroimage">Image du héros</string>
+    <string name="cardTitleText">Affichage</string>
+    <string name="CardSubTitleText">Affichage</string>
+    <string name="detailimage">image de détail</string>
+    <string name="batman">Homme chauve-souris</string>
+    <string name="value1">Affichage</string>
+    <string name="powersets">ENSEMBLES D ALIMENTATION</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="strength">Force</string>
+    <string name="placeholderTxt">Affichage</string>
+    <string name="speed">La vitesse</string>
+    <string name="durability">Durabilité</string>
+    <string name="full_name">Nom complet</string>
+    <string name="place_of_birth">Lieu de naissance</string>
+    <string name="alter_egos">Modifier les égos</string>
+    <string name="first_appearance">Première impression</string>
+    <string name="aliases">Alias</string>
+    <string name="publisher">Éditeur/Éditrice</string>
+    <string name="alignment">Alignement</string>
+    <string name="power">Puissance</string>
+    <string name="combat">Combat</string>
+    <string name="biography">BIOGRAPHIE</string>
+    <string name="appearance">APPARENCE</string>
+    <string name="gender">Le sexe</string>
+</resources>

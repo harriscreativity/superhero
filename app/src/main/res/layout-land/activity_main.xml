@@ -8,24 +8,25 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_width="277dp"
+        android:layout_height="0dp"
         android:background="@drawable/gradient"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:text="@string/superheroapi"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#fff"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
@@ -33,7 +34,7 @@
         android:id="@+id/cardView"
         android:layout_width="200dp"
         android:layout_height="36dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -79,7 +80,7 @@
         android:textColor="#BEC4D9"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/wellcometxt" />
 
     <TextView
@@ -94,34 +95,30 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/main_ills" />
 
     <ImageView
         android:id="@+id/main_ills"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/ma_illustration"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/illustration" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MainGridList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
