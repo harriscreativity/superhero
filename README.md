@@ -5,6 +5,7 @@ Open on android studio
 Localization support french
 Local Db Realm
 Network Retroit
+Kotlin
 ```
 <p>
   <img src="Screenshot_1582622000.png" width="250" title="hover text">
