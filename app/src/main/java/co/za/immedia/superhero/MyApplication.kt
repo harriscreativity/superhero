@@ -1,6 +1,7 @@
 package co.za.immedia.superhero
 
 import android.app.Application
+import co.za.immedia.superhero.Model.SuperHeroModel
 import co.za.immedia.superhero.Model.SuperHeroRealmModel
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -9,6 +10,9 @@ import io.realm.kotlin.where
 
 class MyApplication : Application() {
 
+    companion object {
+        val compareItems = mutableListOf<SuperHeroModel>()
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -16,6 +20,7 @@ class MyApplication : Application() {
         Realm.init(this)
         // Open the realm for the UI thread.
     }
+
 
     fun InsertData(param: SuperHeroRealmModel,realm: Realm){
 

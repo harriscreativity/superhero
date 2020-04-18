@@ -1,5 +1,6 @@
 package co.za.immedia.superhero
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import co.za.immedia.superhero.Model.SearchSuperHero
 import co.za.immedia.superhero.Model.SuperHeroModel
+import co.za.immedia.superhero.Model.SuperHeroRealmModel
 import co.za.immedia.superhero.Network.ApiClient
 import co.za.immedia.superhero.adapters.CardListAdapter
+import com.google.gson.Gson
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_search.*
 import retrofit2.Call
@@ -21,6 +24,17 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
     val ListHero = mutableListOf<SuperHeroModel>()
 
     lateinit var realm: Realm
+    lateinit var param: String
+    var AppService = MyApplication()
+    var index: Int = 0
+
+    private val onItemClickListener: (SuperHeroModel) -> Unit = { item ->
+        when (param) {
+            "Picker" -> updateCompareItems(item)
+            "Detail" -> goDetailActivity(item)
+            else -> println("Number too high")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +48,44 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
 
 
         searchbar.setOnQueryTextListener(this)
-        searchbar.setIconifiedByDefault(true);
-        searchbar.setFocusable(true);
-        searchbar.setIconified(false);
-        searchbar.requestFocusFromTouch();
+        searchbar.isIconifiedByDefault = true
+        searchbar.isFocusable = true
+        searchbar.isIconified = false
+        searchbar.requestFocusFromTouch()
 
         GridListView.layoutManager = GridLayoutManager(this,2)
         GridListView.setHasFixedSize(true)
 
+        var paramData = intent.getStringExtra("param")
+        index = intent.getIntExtra("index", 0)
+
+        if (paramData != null) param = paramData
+
+
     }
 
     fun onSubmitSearch(view: View){
-
-        SearchQuery(searchbar.query.toString())
+        SearchQuery(searchbar.query.toString().trim())
     }
 
+
+    private fun updateCompareItems(data: SuperHeroModel) {
+        MyApplication.compareItems.add(index, data)
+        finish()
+    }
+
+    fun goDetailActivity(data: SuperHeroModel) {
+        val jsonString = Gson().toJson(data)
+        AppService.InsertData(
+            SuperHeroRealmModel(
+                data = jsonString,
+                id = data.id.toInt()
+            ), realm
+        )
+        var intent = Intent(applicationContext, DetailActivity::class.java)
+        intent.putExtra("param", jsonString)
+        startActivity(intent)
+    }
 
 
     private fun SearchQuery(name:String) {
@@ -63,7 +100,7 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
 
                 ListHero.clear()
 
-                LoadingIndicator.isIndeterminate = false;
+                LoadingIndicator.isIndeterminate = false
                 LoadingIndicator.visibility = View.GONE
 
 
@@ -73,7 +110,13 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
                     for (hero in data.results){
                         ListHero.add(hero)
                     }
-                    GridListView.adapter = CardListAdapter(ListHero.reversed(),applicationContext,realm)
+                    GridListView.adapter = CardListAdapter(
+                        ListHero.reversed(),
+                        applicationContext,
+                        realm,
+                        param,
+                        onItemClickListener
+                    )
                     GridListView.refreshDrawableState()
                     searchbar.setQuery("",false)
                     searchbar.clearFocus()
@@ -84,7 +127,7 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
             }
 
             override fun onFailure(call: Call<SearchSuperHero>?, t: Throwable?) {
-                LoadingIndicator.isIndeterminate = false;
+                LoadingIndicator.isIndeterminate = false
                 LoadingIndicator.visibility = View.GONE
                 Toast.makeText(applicationContext,"No Hero found try different name ...",Toast.LENGTH_LONG).show()
                 print(t?.message)

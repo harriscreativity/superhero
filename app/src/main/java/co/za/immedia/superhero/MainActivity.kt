@@ -1,12 +1,9 @@
 package co.za.immedia.superhero
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import co.za.immedia.superhero.Model.SuperHeroModel
 import co.za.immedia.superhero.adapters.CardListAdapter
@@ -19,11 +16,19 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var realm: Realm
     val ListHero = mutableListOf<SuperHeroModel>()
+    var AppService = MyApplication()
+
+    private val onItemClickListener: (SuperHeroModel) -> Unit = { item ->
+        val jsonString = Gson().toJson(item)
+        var intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("param", jsonString)
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getSupportActionBar()?.hide()
+        supportActionBar?.hide()
 
         realm = Realm.getDefaultInstance()
     }
@@ -50,23 +55,36 @@ class MainActivity : AppCompatActivity() {
                 wellcometxt.visibility = View.GONE
                 txtwelcomemessage.visibility = View.GONE
 
-
                 MainGridList.layoutManager = GridLayoutManager(this,2)
                 MainGridList.setHasFixedSize(true)
-                MainGridList.adapter = CardListAdapter(ListHero.reversed(),applicationContext,realm)
+                MainGridList.adapter = CardListAdapter(
+                    ListHero.reversed(),
+                    applicationContext,
+                    realm,
+                    "Detail",
+                    onItemClickListener
+                )
                 MainGridList.refreshDrawableState()
             }
         }
     }
 
     fun onSearch(view: View){
-        var card:CardView = findViewById(R.id.cardView)
         var i = Intent(this,SearchActivity::class.java)
+        i.putExtra("param", "Detail")
         startActivity(i)
     }
+
+    fun onCompare(view: View) {
+        var i = Intent(this, CompareActivity::class.java)
+        startActivity(i)
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
         realm.close() // Remember to close Realm when done.
     }
+
+
 }

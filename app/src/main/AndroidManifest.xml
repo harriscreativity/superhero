@@ -13,11 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".CompareActivity"></activity>
+        <activity android:name=".DetailActivity" />
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

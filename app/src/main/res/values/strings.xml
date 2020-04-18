@@ -31,4 +31,12 @@
     <string name="biography">BIOGRAPHY</string>
     <string name="appearance">APPEARANCE</string>
     <string name="gender">Gender</string>
+    <string name="btnTxt">Who is the most powerful</string>
+    <string name="placeholder"></string>
+    <string name="imageText">image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select">Select</string>
+    <string name="overall_score">overall score</string>
 </resources>

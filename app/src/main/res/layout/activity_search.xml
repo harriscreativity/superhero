@@ -51,7 +51,7 @@
             android:id="@+id/searchbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF"
+            android:background="@color/colorPrimaryDark"
             android:queryHint="Type your superhero name" />
     </androidx.cardview.widget.CardView>
 
