@@ -1,8 +1,9 @@
 package co.za.immedia.superhero
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import co.za.immedia.superhero.Model.Appearance
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import co.za.immedia.superhero.Model.ExpandedItem
 import co.za.immedia.superhero.Model.SuperHeroModel
 import co.za.immedia.superhero.adapters.ExpandedAdapter
@@ -10,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_search.toolbar
-import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 
 class DetailActivity : AppCompatActivity() {
@@ -44,7 +44,7 @@ lateinit var superHeroModel : SuperHeroModel
             .placeholder(R.drawable.ic_insert_photo_24px)
             .error(R.drawable.ic_broken_image_24px)
             .optionalCenterCrop()
-            .into(detailimage);
+            .into(detailimage)
 
         Thread(Runnable {
             // performing some dummy time taking operation
@@ -110,6 +110,13 @@ lateinit var superHeroModel : SuperHeroModel
         connTitle.text = "group affiliation \n\n".toUpperCase() + superHeroModel.connections.groupAffiliation
         connText.text = "relatives \n\n".toUpperCase() + superHeroModel.connections.relatives
 
+    }
+
+    fun onCompare(view: View) {
+        MyApplication.compareItems.clear()
+        MyApplication.compareItems.add(0, superHeroModel)
+        var intent = Intent(applicationContext, CompareActivity::class.java)
+        startActivity(intent)
     }
 
 

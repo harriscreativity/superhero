@@ -37,4 +37,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select">Select</string>
     <string name="overall_score">overall score</string>
+    <string name="compare">Compare</string>
 </resources>

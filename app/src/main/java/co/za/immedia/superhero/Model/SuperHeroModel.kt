@@ -83,7 +83,7 @@ data class Image(
 data class SuperHeroModel(
 
     @SerializedName("response")
-    val response: String,
+    val response: SuperHeroModel,
 
     @SerializedName("id")
     val id:String,

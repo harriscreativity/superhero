@@ -70,7 +70,11 @@ class SearchActivity : AppCompatActivity(), android.widget.SearchView.OnQueryTex
 
 
     private fun updateCompareItems(data: SuperHeroModel) {
-        MyApplication.compareItems.add(index, data)
+        try {
+            MyApplication.compareItems.set(index, data)
+        } catch (e: Exception) {
+            MyApplication.compareItems.add(index, data)
+        }
         finish()
     }
 
